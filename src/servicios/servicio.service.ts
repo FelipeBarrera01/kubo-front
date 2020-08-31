@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ProductosLocal , Carritos} from 'src/interfaces/interfaces';
+import { ProductosLocal , Carritos, Compras, Subtotales, Ids} from 'src/interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +23,14 @@ export class ServicioService {
   }
   obtenerCarrito(){
     return this.http.get<Carritos[]>(this.urlEndPoint + 'carritos');
+  }
+  guardarCompra(compras: Compras[]){
+    return this.http.post<any>(this.urlEndPoint + 'compras', compras);
+  }
+  borrarCarrito(ids: Ids[]){
+    return this.http.post<any>(this.urlEndPoint + 'borrar-carrito', ids);
+  }
+  filtro(term: string){
+    return this.http.get<ProductosLocal>(this.urlEndPoint + 'productos/' + term);
   }
 }

@@ -5,17 +5,34 @@
 </ion-header>
 
 <ion-content>
-
+<ion-card *ngIf="carritos.length > 0">
   <ion-item>
     <ion-label># {{numeroOrden}}</ion-label>
   </ion-item>
-  <ion-card *ngFor="let carrito of list">
-    <ion-img ></ion-img>
+  <ion-card *ngFor="let carrito of carritos">
+    <ion-img [src]=" url + carrito.imagen"></ion-img>
+    <ion-item>
+      <ion-label > Nombre: {{carrito.nombre}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Categoria: {{carrito.categoria}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label >Descripcion: {{carrito.descripcion}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label >Precio: {{carrito.precio}}</ion-label>
+    </ion-item>
     <ion-item>
       <ion-label position="fixed">Cantidad</ion-label>
-      <ion-button color="success" slot="end">+</ion-button>
-      <ion-button color="danger" slot="end">-</ion-button>
-      <ion-input></ion-input>
+      <ion-button color="success" slot="end" (click)="aumentarCantidad(carrito.id)">+</ion-button>
+      <ion-button color="danger" slot="end" (click)="restarCantidad(carrito.id)">-</ion-button>
+      <ion-input>{{carrito.cantidad}}</ion-input>
     </ion-item>
   </ion-card>
+  <ion-item>
+    <ion-label >Total: {{total}}</ion-label>
+  </ion-item>
+  <ion-button (click)="registrarOrden()">Registrar Orden</ion-button>
+</ion-card>
 </ion-content>

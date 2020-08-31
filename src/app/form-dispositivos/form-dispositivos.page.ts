@@ -40,4 +40,8 @@ export class FormDispositivosPage implements OnInit {
     reader.onload = e => this.photoSelected = reader.result;
     reader.readAsDataURL(this.producto.imagen);
   }
+  vaciar() {
+    this.producto = {};
+    this.mensaje = '';
+  }
 }
